@@ -1,0 +1,32 @@
+postgres:
+  auth:
+    secretName: postgres-secret
+    userKey: POSTGRES_USER
+    passwordKey: POSTGRES_PASSWORD
+    dbKey: POSTGRES_DB
+
+redis:
+  auth:
+    secretName: redis-secret
+    passwordKey: REDIS_PASSWORD
+
+rabbitmq:
+  auth:
+    secretName: rabbitmq-secret
+    usernameKey: RABBITMQ_DEFAULT_USER
+    passwordKey: RABBITMQ_DEFAULT_PASS
+
+mongodb:
+  replicas: 1
+  persistence:
+      size: 5Gi
+      storageClass: "standard"   # kind-safe, override in EKS
+
+elasticsearch:
+  replicas: 1
+  persistence:
+      size: 5Gi
+      storageClass: "standard"   # kind-safe, override in EKS
+
+
+
