@@ -10,6 +10,8 @@ spec:
     repoURL: https://github.com/princewillopah/LuxeCart-GitOps.git
     targetRevision: main
     path: apps   # 👈 argocd will scan this folder
+    directory:
+      recurse: true
 
   destination:
     server: https://kubernetes.default.svc
