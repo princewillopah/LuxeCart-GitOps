@@ -12,7 +12,6 @@ spec:
     path: apps   # 👈 argocd will scan this folder
     directory:
       recurse: true
-
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
