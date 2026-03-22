@@ -178,6 +178,9 @@ apps
 │         └── postgres-sealed-secret.yaml
 └── readme.md
 
+---------------------------------------------------------------------------------
+# luxe-infra Sealed secrets
+---------------------------------------------------------------------------------
 # mongodb-sealed-secret.yaml:
 kubectl create secret generic mongodb-secret \
   --from-literal=MONGO_INITDB_ROOT_USERNAME=luxeadmin \
@@ -245,6 +248,8 @@ kubeseal \
   -o yaml > flaway-auth-sealed-secret.yaml
 
 ---------------------------------------------------------------------------------
+# luxe-backend Sealed secrets
+---------------------------------------------------------------------------------
 
 #jwt-auth-sealed-secret.yaml
 kubectl create secret generic jwt-auth-secret \
@@ -253,7 +258,7 @@ kubectl create secret generic jwt-auth-secret \
 
 kubeseal \
   --cert /home/princewillopah/DevOps/Kubernetes/Projects/LuxeCart/LuxeCart-GitOps/sealed-secrets-cert.pem \
-  --namespace luxe-infra \
+  --namespace luxe-backend \
   -f jwt-auth-k8s-secret.yaml \
   -o yaml > jwt-auth-sealed-secret.yaml
 
@@ -265,7 +270,7 @@ kubectl create secret generic postgres-connection \
 
 kubeseal \
   --cert /home/princewillopah/DevOps/Kubernetes/Projects/LuxeCart/LuxeCart-GitOps/sealed-secrets-cert.pem \
-  --namespace luxe-infra \
+  --namespace luxe-backend \
   -f postgres-connection-k8s-secret.yaml \
   -o yaml > postgres-connection-sealed-secret.yaml
 
@@ -278,7 +283,7 @@ kubectl create secret generic redis-connection \
 
 kubeseal \
   --cert /home/princewillopah/DevOps/Kubernetes/Projects/LuxeCart/LuxeCart-GitOps/sealed-secrets-cert.pem \
-  --namespace luxe-infra \
+  --namespace luxe-backend \
   -f redis-connection-k8s-secret.yaml \
   -o yaml > redis-connection-sealed-secret.yaml
 
@@ -291,7 +296,7 @@ kubectl create secret generic rabbitmq-connection \
 
 kubeseal \
   --cert /home/princewillopah/DevOps/Kubernetes/Projects/LuxeCart/LuxeCart-GitOps/sealed-secrets-cert.pem \
-  --namespace luxe-infra \
+  --namespace luxe-backend \
   -f rabbitmq-connection-k8s-secret.yaml \
   -o yaml > rabbitmq-connection-sealed-secret.yaml
 
@@ -303,7 +308,7 @@ kubectl create secret generic mongodb-connection \
 
 kubeseal \
   --cert /home/princewillopah/DevOps/Kubernetes/Projects/LuxeCart/LuxeCart-GitOps/sealed-secrets-cert.pem \
-  --namespace luxe-infra \
+  --namespace luxe-backend \
   -f mongodb-connection-k8s-secret.yaml \
   -o yaml > mongodb-connection-sealed-secret.yaml
 
@@ -315,7 +320,7 @@ kubectl create secret generic elasticsearch-connection \
 
 kubeseal \
   --cert /home/princewillopah/DevOps/Kubernetes/Projects/LuxeCart/LuxeCart-GitOps/sealed-secrets-cert.pem \
-  --namespace luxe-infra \
+  --namespace luxe-backend \
   -f elasticsearch-connection-k8s-secret.yaml \
   -o yaml > elasticsearch-connection-sealed-secret.yaml
 
@@ -329,11 +334,13 @@ kubectl create secret generic email-secrets \
 
 kubeseal \
   --cert /home/princewillopah/DevOps/Kubernetes/Projects/LuxeCart/LuxeCart-GitOps/sealed-secrets-cert.pem \
-  --namespace luxe-infra \
+  --namespace luxe-backend \
   -f email-secrets-k8s-secret.yaml \
   -o yaml > email-secrets-sealed-secret.yaml
 
--------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+# luxe-observability Sealed secrets
+---------------------------------------------------------------------------------
 #grafana-secrets-sealed-secret.yaml
 kubectl create secret generic grafana-secrets \
   --from-literal=SMTP_USER=noreply@luxecart.com \
@@ -343,7 +350,7 @@ kubectl create secret generic grafana-secrets \
 
 kubeseal \
   --cert /home/princewillopah/DevOps/Kubernetes/Projects/LuxeCart/LuxeCart-GitOps/sealed-secrets-cert.pem \
-  --namespace luxe-infra \
+  --namespace luxe-observability \
   -f grafana-secrets-k8s-secret.yaml \
   -o yaml > grafana-secrets-sealed-secret.yaml
 
