@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: LuxeCart-frontend
+  name: luxecart-frontend
 spec:
   project: default
   destination:
@@ -19,5 +19,5 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+      # - CreateNamespace=true
       - PruneLast=true # Optional: prune resources last

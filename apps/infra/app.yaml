@@ -1,9 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: LuxeCart-infra
+  name: luxecart-infra
   annotations:
-    argocd.argoproj.io/sync-wave: "-1" # Ensure infra resources are applied before backend and frontend
+    argocd.argoproj.io/sync-wave: "1" # Ensure infra resources are applied before backend and frontend
 spec:
   project: default
   destination:
@@ -21,5 +21,5 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+      # - CreateNamespace=true
       - PruneLast=true # Optional: prune resources last
