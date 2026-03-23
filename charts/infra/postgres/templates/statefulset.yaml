@@ -26,8 +26,8 @@ spec:
           image: {{ .Values.postgres.image }}
 
           securityContext:
-            runAsNonRoot: true
             runAsUser: 999
+            runAsGroup: 999
 
           ports:
             - containerPort: 5432
