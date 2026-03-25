@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: luxe-frontend
   source:
-    repoURL: https://github.com/princewillopah/LuxeCart-GitOps.git
+    repoURL: git@github.com:princewillopah/LuxeCart-GitOps.git
     targetRevision: main
     path: charts/frontend
     # helm:
