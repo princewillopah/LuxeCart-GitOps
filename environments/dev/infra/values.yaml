@@ -4,6 +4,10 @@ postgres:
     userKey: POSTGRES_USER
     passwordKey: POSTGRES_PASSWORD
     dbKey: POSTGRES_DB
+  securityContext:
+    fsGroup: 999
+    runAsUser: 999
+    runAsGroup: 999
 
 redis:
   auth:

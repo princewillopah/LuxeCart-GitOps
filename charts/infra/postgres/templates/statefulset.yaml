@@ -19,15 +19,15 @@ spec:
 
     spec:
       securityContext:
-        fsGroup: 999
+        fsGroup: {{ .Values.postgres.securityContext.fsGroup }}
 
       containers:
         - name: postgres
           image: {{ .Values.postgres.image }}
 
           securityContext:
-            runAsUser: 999
-            runAsGroup: 999
+            runAsUser: {{ .Values.postgres.securityContext.runAsUser }}
+            runAsGroup: {{ .Values.postgres.securityContext.runAsGroup }}
 
           ports:
             - containerPort: 5432
