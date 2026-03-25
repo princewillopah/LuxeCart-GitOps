@@ -9,7 +9,7 @@ postgres:
     userKey: POSTGRES_USER
     passwordKey: POSTGRES_PASSWORD
     dbKey: POSTGRES_DB
-    
+
   securityContext:
     fsGroup: 999
     runAsUser: 999
@@ -30,5 +30,5 @@ postgres:
 exporter:
   enabled: true
   image: prometheuscommunity/postgres-exporter:v0.15.0
-  secretName: postgres-secret
+  secretName: flaway-auth-secret
   dsnKey: POSTGRES_DB_URL
