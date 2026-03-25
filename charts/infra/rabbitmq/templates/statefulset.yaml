@@ -68,13 +68,18 @@ spec:
                 - rabbitmq-diagnostics
                 - -q
                 - ping
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 25
+            failureThreshold: 15
 
           livenessProbe:
             exec:
-              command:
-                - rabbitmq-diagnostics
-                - -q
-                - ping
+              command: ["rabbitmq-diagnostics", "-q", "ping"]
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 25
+            failureThreshold: 15
 
           resources:
             {{- toYaml .Values.rabbitmq.resources | nindent 12 }}
