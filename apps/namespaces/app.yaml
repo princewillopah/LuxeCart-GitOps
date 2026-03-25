@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/YOUR_REPO/LuxeCart-GitOps
+    repoURL: https://github.com/princewillopah/LuxeCart-GitOps.git
     targetRevision: HEAD
     path: apps/namespaces
 
