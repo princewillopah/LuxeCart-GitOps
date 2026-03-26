@@ -47,7 +47,7 @@ spec:
             - name: {{ .name }}
               {{- if .value }}
               value: {{ .value | quote }}
-              {{- else if .secretKeyRef }}
+              {{- else if .valueFrom.secretKeyRef }}
               valueFrom:
                 secretKeyRef:
                   name: {{ .valueFrom.secretKeyRef.name }}
