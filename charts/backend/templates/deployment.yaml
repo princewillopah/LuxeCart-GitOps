@@ -25,10 +25,10 @@ spec:
     spec:
       serviceAccountName: {{ default "luxecart-sa" $.Values.serviceAccount.name }}
 
-      securityContext:
-        fsGroup: 2000
-        runAsUser: 1000
-        runAsGroup: 1000
+      # securityContext:
+      #   fsGroup: 2000
+      #   runAsUser: 1000
+      #   runAsGroup: 1000
       containers:
         - name: {{ $name }}
           image: "{{ $svc.image }}"
@@ -37,9 +37,9 @@ spec:
           ports:
             - containerPort: {{ $svc.port }}
 
-          securityContext:
-            runAsNonRoot: true
-            allowPrivilegeEscalation: false
+          # securityContext:
+          #   runAsNonRoot: true
+          #   allowPrivilegeEscalation: false
 
           {{- if $svc.env }}
           env:
