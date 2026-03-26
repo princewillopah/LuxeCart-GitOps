@@ -1,5 +1,8 @@
 {{- $defaults := .Values.defaults }}
 {{- range $name, $svc := .Values.services }}
+{{- $resources := default $defaults.resources $svc.resources }}
+{{- $rp := default $defaults.readinessProbe $svc.readinessProbe }}
+{{- $lp := default $defaults.livenessProbe $svc.livenessProbe }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -63,33 +66,29 @@ spec:
 
           resources:
             requests:
-              cpu: {{ default $defaults.resources.requests.cpu $svc.resources.requests.cpu }}
-              memory: {{ default $defaults.resources.requests.memory $svc.resources.requests.memory }}
+              cpu: {{ default $defaults.resources.requests.cpu $resources.requests.cpu }}
+              memory: {{ default $defaults.resources.requests.memory $resources.requests.memory }}
             limits:
-              cpu: {{ default $defaults.resources.limits.cpu $svc.resources.limits.cpu }}
-              memory: {{ default $defaults.resources.limits.memory $svc.resources.limits.memory }}
+              cpu: {{ default $defaults.resources.limits.cpu $resources.limits.cpu }}
+              memory: {{ default $defaults.resources.limits.memory $resources.limits.memory }}
 
-          {{- if $svc.readinessProbe }}
           readinessProbe:
             httpGet:
-              path: {{ $svc.readinessProbe.path }}
+              path: {{ $rp.path }}
               port: {{ $svc.port }}
-            initialDelaySeconds: {{ $svc.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ $svc.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ $svc.readinessProbe.timeoutSeconds }}
-            failureThreshold: {{ $svc.readinessProbe.failureThreshold }}
-          {{- end }}
+            initialDelaySeconds: {{ $rp.initialDelaySeconds }}
+            periodSeconds: {{ $rp.periodSeconds }}
+            timeoutSeconds: {{ $rp.timeoutSeconds }}
+            failureThreshold: {{ $rp.failureThreshold }}
 
-          {{- if $svc.livenessProbe }}
           livenessProbe:
             httpGet:
-              path: {{ $svc.livenessProbe.path }}
+              path: {{ $lp.path }}
               port: {{ $svc.port }}
-            initialDelaySeconds: {{ $svc.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ $svc.livenessProbe.periodSeconds }}
-            timeoutSeconds: {{ $svc.livenessProbe.timeoutSeconds }}
-            failureThreshold: {{ $svc.livenessProbe.failureThreshold }}
-          {{- end }}
+            initialDelaySeconds: {{ $lp.initialDelaySeconds }}
+            periodSeconds: {{ $lp.periodSeconds }}
+            timeoutSeconds: {{ $lp.timeoutSeconds }}
+            failureThreshold: {{ $lp.failureThreshold }}
 
 ---
 {{- end }}
