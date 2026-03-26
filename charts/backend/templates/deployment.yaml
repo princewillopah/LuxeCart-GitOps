@@ -27,7 +27,8 @@ spec:
 
       securityContext:
         fsGroup: 2000
-
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: {{ $name }}
           image: "{{ $svc.image }}"
@@ -38,7 +39,6 @@ spec:
 
           securityContext:
             runAsNonRoot: true
-            runAsUser: 1000
             allowPrivilegeEscalation: false
 
           {{- if $svc.env }}
