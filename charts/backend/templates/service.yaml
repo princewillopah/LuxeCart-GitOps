@@ -17,7 +17,7 @@ spec:
     app: {{ $name }}
 
   ports:
-    - name: {{ default "http" $svc.portName }}
+    - name: {{ default "metrics" $svc.portName }}
       port: {{ $svc.port }}
       targetPort: {{ $svc.port }}
 

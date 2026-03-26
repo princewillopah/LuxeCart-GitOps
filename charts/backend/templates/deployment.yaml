@@ -1,3 +1,4 @@
+{{- $defaults := .Values.defaults }}
 {{- range $name, $svc := .Values.services }}
 apiVersion: apps/v1
 kind: Deployment
@@ -62,11 +63,11 @@ spec:
 
           resources:
             requests:
-              cpu: {{ $svc.resources.requests.cpu }}
-              memory: {{ $svc.resources.requests.memory }}
+              cpu: {{ default $defaults.resources.requests.cpu $svc.resources.requests.cpu }}
+              memory: {{ default $defaults.resources.requests.memory $svc.resources.requests.memory }}
             limits:
-              cpu: {{ $svc.resources.limits.cpu }}
-              memory: {{ $svc.resources.limits.memory }}
+              cpu: {{ default $defaults.resources.limits.cpu $svc.resources.limits.cpu }}
+              memory: {{ default $defaults.resources.limits.memory $svc.resources.limits.memory }}
 
           {{- if $svc.readinessProbe }}
           readinessProbe:

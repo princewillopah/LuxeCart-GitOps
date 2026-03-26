@@ -3,6 +3,39 @@ namespace: luxe-backend
 global:
   environment: dev
 
+
+defaults:
+  imagePullPolicy: Always
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 256Mi
+
+  readinessProbe:
+    path: /health
+    initialDelaySeconds: 40
+    periodSeconds: 30
+    timeoutSeconds: 25
+    failureThreshold: 15
+
+  livenessProbe:
+    path: /health
+    initialDelaySeconds: 40
+    periodSeconds: 30
+    timeoutSeconds: 25
+    failureThreshold: 15
+
+  # service configuration
+  portName: metrics
+  serviceType: ClusterIP
+  labels:
+    tier: business-logic
+
+
 services:
   # Admin Service
   admin-service:
@@ -15,33 +48,6 @@ services:
             name: postgres-connection
             key: DATABASE_URL
 
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-    
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
 
   # API Gateway Service
   api-gateway-service:
@@ -66,34 +72,6 @@ services:
     envFrom:
       - configMapRef: api-gateway-config
 
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
 
   # Analytics Service
   analytics-service:
@@ -105,34 +83,6 @@ services:
             secretKeyRef:
               name: postgres-connection
               key: DATABASE_URL
-
-      resources:
-        requests:
-          cpu: 50m
-          memory: 128Mi
-        limits:
-          cpu: 100m
-          memory: 256Mi
-
-      readinessProbe:
-        path: /health
-        initialDelaySeconds: 40
-        periodSeconds: 30
-        timeoutSeconds: 25
-        failureThreshold: 15
-
-      livenessProbe:
-        path: /health
-        initialDelaySeconds: 40
-        periodSeconds: 30
-        timeoutSeconds: 25
-        failureThreshold: 15
-      
-      # service configuration
-      portName: metrics
-      serviceType: ClusterIP
-      labels:
-        tier: business-logic
 
 
 
@@ -157,36 +107,6 @@ services:
             name: rabbitmq-connection
             key: RABBITMQ_URL
 
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
-
-
   # Cart Service
   cart-service:
     imagePullPolicy: Always
@@ -202,35 +122,6 @@ services:
           secretKeyRef:
             name: redis-connection
             key: REDIS_URL
-
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
 
   # Email Service
   email-service:
@@ -274,34 +165,6 @@ services:
             name: rabbitmq-connection
             key: RABBITMQ_URL
 
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
 
   # Inventory Service
   inventory-service:
@@ -321,33 +184,6 @@ services:
             name: rabbitmq-connection
             key: RABBITMQ_URL
 
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
 
 
   # Notification Service
@@ -365,33 +201,6 @@ services:
           secretKeyRef:
             name: rabbitmq-connection
             key: RABBITMQ_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
 
   # order-service:
   order-service:
@@ -408,32 +217,7 @@ services:
           secretKeyRef:
             name: rabbitmq-connection
             key: RABBITMQ_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
 
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
 
   # Payment Service
   payment-service:
@@ -450,33 +234,6 @@ services:
           secretKeyRef:
             name: rabbitmq-connection
             key: RABBITMQ_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
 
 
   # product-service:
@@ -494,33 +251,6 @@ services:
           secretKeyRef:
             name: redis-connection
             key: REDIS_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
 
   # rating-service:
   rating-service:
@@ -532,33 +262,6 @@ services:
           secretKeyRef:
             name: postgres-connection
             key: DATABASE_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
 
   # recommendation-service:
   recommendation-service:
@@ -575,32 +278,6 @@ services:
           secretKeyRef:
             name: redis-connection
             key: REDIS_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
 
   # review-service:
   review-service:
@@ -612,32 +289,6 @@ services:
           secretKeyRef:
             name: postgres-connection
             key: DATABASE_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
 
   # Search Service
   search-service:
@@ -659,33 +310,6 @@ services:
           secretKeyRef:
             name: rabbitmq-connection
             key: RABBITMQ_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
 
   # User Service
   user-service:
@@ -707,35 +331,6 @@ services:
           secretKeyRef:
             name: rabbitmq-connection
             key: RABBITMQ_URL
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        cpu: 100m
-        memory: 256Mi
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-
-    livenessProbe:
-      path: /health
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 25
-      failureThreshold: 15
-      
-    # service configuration
-    portName: metrics
-    serviceType: ClusterIP
-    labels:
-      tier: business-logic
-
-
-
 
 
 ingress:
@@ -750,5 +345,3 @@ pdb:
 serviceAccount:
   create: true
   name: ""
-
-services: {}
