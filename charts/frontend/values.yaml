@@ -11,12 +11,12 @@ frontend:
 
   ports:
     - name: http
-      containerPort: 80
+      containerPort: 8080
       servicePort: 80
 
     - name: nginx-status
-      containerPort: 8080
-      servicePort: 8080
+      containerPort: 8081
+      servicePort: 8081
 
   resources:
     requests:
@@ -28,7 +28,7 @@ frontend:
 
   readinessProbe:
     path: /
-    port: 80
+    port: 8080
     initialDelaySeconds: 40
     periodSeconds: 30
     timeoutSeconds: 25
@@ -36,7 +36,7 @@ frontend:
 
   livenessProbe:
     path: /
-    port: 80
+    port: 8080
     initialDelaySeconds: 40
     periodSeconds: 30
     timeoutSeconds: 25

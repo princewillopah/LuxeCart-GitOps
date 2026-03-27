@@ -65,12 +65,12 @@ spec:
             periodSeconds: {{ .Values.frontend.livenessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.frontend.livenessProbe.timeoutSeconds }}
             failureThreshold: {{ .Values.frontend.livenessProbe.failureThreshold }}
-
+          #these # volumes are because i run this container as non-root and nginx needs write access to these directories
           volumeMounts:
             - name: nginx-cache
               mountPath: /var/cache/nginx
             - name: nginx-run
-              mountPath: /var/run
+              mountPath: /var/run 
             - name: nginx-log
               mountPath: /var/log/nginx
 
