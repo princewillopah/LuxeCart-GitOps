@@ -65,4 +65,22 @@ spec:
             periodSeconds: {{ .Values.frontend.livenessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.frontend.livenessProbe.timeoutSeconds }}
             failureThreshold: {{ .Values.frontend.livenessProbe.failureThreshold }}
+
+          volumeMounts:
+            - name: nginx-cache
+              mountPath: /var/cache/nginx
+            - name: nginx-run
+              mountPath: /var/run
+            - name: nginx-log
+              mountPath: /var/log/nginx
+
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
+        - name: nginx-run
+          emptyDir: {}
+        - name: nginx-log
+          emptyDir: {}
+
+
 {{- end }}
