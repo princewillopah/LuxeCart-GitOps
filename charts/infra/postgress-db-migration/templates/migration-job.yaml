@@ -4,10 +4,12 @@ kind: Job
 metadata:
   name: postgres-migration
   namespace: {{ .Values.namespace }}
-
+  # annotations:
+  #   "helm.sh/hook": post-install,post-upgrade
+  #   "helm.sh/hook-delete-policy": before-hook-creation
   annotations:
-    "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-delete-policy": before-hook-creation
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 
 spec:
   backoffLimit: {{ .Values.migration.backoffLimit }}

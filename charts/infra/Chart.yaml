@@ -29,4 +29,7 @@ dependencies:
     version: 1.0.0
     repository: "file://../infra/kibana"
 
+  - name: postgress-db-migration
+    version: 1.0.0
+    repository: "file://../postgress-db-migration"
 
