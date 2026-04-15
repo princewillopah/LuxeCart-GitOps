@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: git@github.com:princewillopah/LuxeCart-GitOps.git
     targetRevision: main
-    path: charts/infra/postgress-db-migration
+    path: charts/db-migration
     helm:
       valueFiles:
         - ../../environments/dev/infra/values.yaml
