@@ -32,5 +32,9 @@ elasticsearch:
       size: 5Gi
       storageClass: "standard"   # kind-safe, override in EKS
 
-
-
+migration:
+  db:
+    secretName: flaway-auth-secret   # NOT postgres root secret
+    urlKey: FLYWAY_URL
+    userKey: FLYWAY_USER
+    passwordKey: FLYWAY_PASSWORD

@@ -24,6 +24,7 @@ spec:
 
           command:
             - flyway
+            - -connectRetries=10
             - -baselineOnMigrate=true
             - migrate
 
