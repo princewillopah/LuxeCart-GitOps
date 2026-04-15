@@ -1,12 +1,11 @@
 migration:
   enabled: true
-
   image: flyway/flyway:10
 
   db:
-    secretName: flaway-auth-secret   # NOT postgres root secret
+    secretName: flyway-auth-secret
     urlKey: FLYWAY_URL
     userKey: FLYWAY_USER
     passwordKey: FLYWAY_PASSWORD
 
-  backoffLimit: 5
+  backoffLimit: 3
