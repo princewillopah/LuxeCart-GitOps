@@ -4,7 +4,7 @@ metadata:
   name: luxecart-backend
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "100" # Ensure backend resources are applied after secrets
+    argocd.argoproj.io/sync-wave: "3" # Ensure backend resources are applied after secrets
 spec:
   project: default
   destination:
