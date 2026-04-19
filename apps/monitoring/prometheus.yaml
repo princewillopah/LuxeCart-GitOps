@@ -6,15 +6,17 @@ metadata:
 spec:
   project: default
 
-  source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: 58.0.0
-    helm:
-      valueFiles:
-        - ../../environments/dev/monitoring/prometheus/values.yaml
-
   sources:
+
+    # ✅ Helm chart
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack
+      targetRevision: 58.0.0
+      helm:
+        valueFiles:
+          - $values/environments/dev/monitoring/prometheus/values.yaml
+
+    # ✅ Git repo (values source)
     - repoURL: git@github.com:princewillopah/LuxeCart-GitOps.git
       targetRevision: main
       ref: values
@@ -27,6 +29,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
     syncOptions:
       - CreateNamespace=true
