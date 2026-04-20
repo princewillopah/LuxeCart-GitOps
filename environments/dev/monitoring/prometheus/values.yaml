@@ -6,18 +6,16 @@ prometheus:
 prometheusSpec:
   retention: 7d
 
-  # 🔴 THIS IS THE MISSING LINK
+  # 🔴 FIX: allow all ServiceMonitors
+  serviceMonitorSelector: {}
+  serviceMonitorNamespaceSelector: {}
+
+  podMonitorSelector: {}
+  podMonitorNamespaceSelector: {}
+
   additionalScrapeConfigs:
     name: prometheus-additional-scrape-configs
     key: additional-scrape-configs.yaml
-
-  serviceMonitorSelector:
-    matchLabels:
-      release: prometheus
-
-  serviceMonitorNamespaceSelector:
-    matchNames:
-      - luxe-observability
 
   resources:
     requests:
@@ -37,9 +35,53 @@ prometheusSpec:
             storage: 5Gi
 
   scrapeInterval: 15s
+  evaluationInterval: 15s
 
-grafana:
-  enabled: false
 
-alertmanager:
-  enabled: false
+
+
+# prometheus:
+#   service:
+#     type: NodePort
+#     nodePort: 30090
+
+# prometheusSpec:
+#   retention: 7d
+
+#   # 🔴 THIS IS THE MISSING LINK
+#   additionalScrapeConfigs:
+#     name: prometheus-additional-scrape-configs
+#     key: additional-scrape-configs.yaml
+
+#   serviceMonitorSelector:
+#     matchLabels:
+#       release: prometheus
+
+#   serviceMonitorNamespaceSelector:
+#     matchNames:
+#       - luxe-observability
+
+#   resources:
+#     requests:
+#       cpu: 200m
+#       memory: 512Mi
+#     limits:
+#       cpu: "1"
+#       memory: 1Gi
+
+#   storageSpec:
+#     volumeClaimTemplate:
+#       spec:
+#         storageClassName: standard
+#         accessModes: ["ReadWriteOnce"]
+#         resources:
+#           requests:
+#             storage: 5Gi
+
+#   scrapeInterval: 15s
+
+# grafana:
+#   enabled: false
+
+# alertmanager:
+#   enabled: false
