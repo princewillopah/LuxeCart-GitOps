@@ -7,8 +7,6 @@ spec:
   project: default
 
   sources:
-
-    # ✅ Helm chart
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
       targetRevision: 58.0.0
@@ -16,7 +14,7 @@ spec:
         valueFiles:
           - ../../environments/dev/monitoring/prometheus/values.yaml
 
-    # ✅ Git repo (values source)
+
     - repoURL: git@github.com:princewillopah/LuxeCart-GitOps.git
       targetRevision: main
       ref: values
@@ -29,5 +27,7 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true   # 🔴 FIX FOR CRDs

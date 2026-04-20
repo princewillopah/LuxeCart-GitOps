@@ -37,3 +37,9 @@ prometheusSpec:
             storage: 5Gi
 
   scrapeInterval: 15s
+
+grafana:
+  enabled: false
+
+alertmanager:
+  enabled: false
