@@ -1,7 +1,7 @@
 services:
   # Admin Service
   admin-service:
-      image: princewillopah2/luxecart-admin-service:1.0.8
+      image: princewillopah2/luxecart-admin-service:1.0.9
       replicas: 1
       port: 3010
       env:
@@ -13,7 +13,7 @@ services:
 
   # API Gateway Service
   api-gateway-service:
-    image: princewillopah2/luxecart-api-gateway-service:1.0.8
+    image: princewillopah2/luxecart-api-gateway-service:1.0.9
     replicas: 1
     port: 3000
     env:
@@ -38,7 +38,7 @@ services:
 
   # Analytics Service
   analytics-service:
-      image: princewillopah2/luxecart-analytics-service:1.0.8
+      image: princewillopah2/luxecart-analytics-service:1.0.9
       replicas: 1
       port: 3013
       env:
@@ -51,7 +51,7 @@ services:
 
   # Auth Service
   auth-service:
-    image: princewillopah2/luxecart-auth-service:1.0.8
+    image: princewillopah2/luxecart-auth-service:1.0.9
     replicas: 1
     port: 3001
     env:
@@ -79,7 +79,7 @@ services:
 
   # Cart Service
   cart-service:
-    image: princewillopah2/luxecart-cart-service:1.0.8
+    image: princewillopah2/luxecart-cart-service:1.0.9
     replicas: 1
     port: 3004
     env:
@@ -97,7 +97,7 @@ services:
 
   # Email Service
   email-service:
-    image: princewillopah2/luxecart-email-service:1.0.8
+    image: princewillopah2/luxecart-email-service:1.0.9
     replicas: 1
     port: 3015
     env:
@@ -141,7 +141,7 @@ services:
 
   # Inventory Service
   inventory-service:
-    image: princewillopah2/luxecart-inventory-service:1.0.8
+    image: princewillopah2/luxecart-inventory-service:1.0.9
     replicas: 1
     port: 3011
     env:
@@ -161,7 +161,7 @@ services:
 
   # Notification Service
   notification-service:
-    image: princewillopah2/luxecart-notification-service:1.0.8
+    image: princewillopah2/luxecart-notification-service:1.0.9
     replicas: 1
     port: 3009
     env:
@@ -178,7 +178,7 @@ services:
 
   # order-service:
   order-service:
-    image: princewillopah2/luxecart-order-service:1.0.8
+    image: princewillopah2/luxecart-order-service:1.0.9
     replicas: 1
     port: 3005
     env:
@@ -195,7 +195,7 @@ services:
 
   # Payment Service
   payment-service:
-    image: princewillopah2/luxecart-payment-service:1.0.8
+    image: princewillopah2/luxecart-payment-service:1.0.9
     replicas: 1
     port: 3008
     env:
@@ -212,7 +212,7 @@ services:
 
   # product-service:
   product-service:
-    image: princewillopah2/luxecart-product-service:1.0.8
+    image: princewillopah2/luxecart-product-service:1.0.9
     replicas: 1
     port: 3003
     env:
@@ -229,7 +229,7 @@ services:
 
   # rating-service:
   rating-service:
-    image: princewillopah2/luxecart-rating-service:1.0.8
+    image: princewillopah2/luxecart-rating-service:1.0.9
     replicas: 1
     port: 3007
     env:
@@ -241,7 +241,7 @@ services:
 
   # recommendation-service:
   recommendation-service:
-    image: princewillopah2/luxecart-recommendation-service:1.0.8
+    image: princewillopah2/luxecart-recommendation-service:1.0.9
     replicas: 1
     port: 3014
     env:
@@ -258,7 +258,7 @@ services:
 
   # review-service:
   review-service:
-    image: princewillopah2/luxecart-review-service:1.0.8
+    image: princewillopah2/luxecart-review-service:1.0.9
     replicas: 1
     port: 3006
     env:
@@ -270,7 +270,7 @@ services:
 
   # Search Service
   search-service:
-    image: princewillopah2/luxecart-search-service:1.0.8
+    image: princewillopah2/luxecart-search-service:1.0.9
     replicas: 1
     port: 3012
     env:
@@ -292,7 +292,7 @@ services:
 
   # User Service
   user-service:
-    image: princewillopah2/luxecart-user-service:1.0.8
+    image: princewillopah2/luxecart-user-service:1.0.9
     replicas: 1
     port: 3002
     env:
