@@ -7,7 +7,7 @@ metadata:
 spec:
   project: default
 
-  source:
+  sources:
     - repoURL: https://grafana.github.io/helm-charts
       chart: promtail
       targetRevision: 6.*
