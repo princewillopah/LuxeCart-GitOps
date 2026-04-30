@@ -39,6 +39,74 @@ prometheusSpec:
 
 
 
+# //////// GRAFANA ////////////////
+
+grafana:
+  enabled: true
+
+  adminUser: admin
+  adminPassword: admin123
+
+  persistence:
+    enabled: true
+    storageClassName: standard
+    accessModes:
+      - ReadWriteOnce
+    size: 5Gi
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  plugins:
+    - redis-datasource
+
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          url: http://luxecart-prometheus-kube-p-prometheus:9090
+          isDefault: true
+
+        - name: Loki
+          type: loki
+          access: proxy
+          url: http://loki:3100
+
+  defaultDashboardsEnabled: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # prometheus:
 #   service:
