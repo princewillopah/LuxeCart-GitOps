@@ -61,95 +61,27 @@ grafana:
   plugins:
     - redis-datasource
 
-  datasources:
-    datasources.yaml:
-      apiVersion: 1
-      datasources:
-        - name: Prometheus
-          type: prometheus
-          access: proxy
-          url: http://luxecart-prometheus-kube-p-prometheus:9090
-          isDefault: true
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      access: proxy
+      url: http://loki:3100
+      editable: true
 
-        - name: Loki
-          type: loki
-          access: proxy
-          url: http://loki:3100
+  # datasources:
+  #   datasources.yaml:
+  #     apiVersion: 1
+  #     datasources:
+  #       - name: Prometheus
+  #         type: prometheus
+  #         access: proxy
+  #         url: http://luxecart-prometheus-kube-p-prometheus:9090
+  #         isDefault: true
+
+  #       - name: Loki
+  #         type: loki
+  #         access: proxy
+  #         url: http://loki:3100
 
   defaultDashboardsEnabled: true
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# prometheus:
-#   service:
-#     type: NodePort
-#     nodePort: 30090
-
-# prometheusSpec:
-#   retention: 7d
-
-#   # 🔴 THIS IS THE MISSING LINK
-#   additionalScrapeConfigs:
-#     name: prometheus-additional-scrape-configs
-#     key: additional-scrape-configs.yaml
-
-#   serviceMonitorSelector:
-#     matchLabels:
-#       release: prometheus
-
-#   serviceMonitorNamespaceSelector:
-#     matchNames:
-#       - luxe-observability
-
-#   resources:
-#     requests:
-#       cpu: 200m
-#       memory: 512Mi
-#     limits:
-#       cpu: "1"
-#       memory: 1Gi
-
-#   storageSpec:
-#     volumeClaimTemplate:
-#       spec:
-#         storageClassName: standard
-#         accessModes: ["ReadWriteOnce"]
-#         resources:
-#           requests:
-#             storage: 5Gi
-
-#   scrapeInterval: 15s
-
-# grafana:
-#   enabled: false
-
-# alertmanager:
-#   enabled: false
